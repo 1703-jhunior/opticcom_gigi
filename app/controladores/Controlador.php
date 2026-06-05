@@ -1,7 +1,7 @@
 <?php
 class Controlador {
     public function modelo($modelo){
-        require_once '../app/modelos/' . $modelo . '.php';
+        require_once __DIR__ . '/../modelos/' . $modelo . '.php';
         return new $modelo();
     }
 
