@@ -16,7 +16,7 @@ require_once 'helpers/session_helper.php';
 // APP_ROOT: Ruta física a la carpeta raíz del proyecto (public_html)
 define('APP_ROOT', dirname(dirname(__FILE__)));
 // RUTA_URL: URL base del sitio web (Verifica http/https)
-define('RUTA_URL', 'https://opticcomperu.com'); // Asegúrate que esta sea tu URL final
+define('RUTA_URL', 'http://192.168.1.128:3000'); // Asegúrate que esta sea tu URL final
 
 // 3. Cargar el núcleo del sistema, incluyendo la CONEXIÓN.
 // (El autoloader de abajo se encargará de Core.php y Controlador.php)
