@@ -11,7 +11,7 @@ class Core {
             $this->controladorActual = ucwords($url[0]);
             unset($url[0]);
         }
-        require_once '../app/controladores/' . $this->controladorActual . '.php';
+        require_once __DIR__ . '/../controladores/' . $this->controladorActual . '.php';
         $this->controladorActual = new $this->controladorActual;
 
         if (isset($url[1])) {
