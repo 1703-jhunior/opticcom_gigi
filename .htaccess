@@ -1,0 +1,9 @@
+RewriteEngine On
+RewriteBase /
+
+# Regla para ejecutar archivos que existen en la raíz (como generador.php)
+RewriteCond %{REQUEST_FILENAME} -f
+RewriteRule ^ - [L]
+
+# Regla para redirigir todo lo demás a la carpeta /public
+RewriteRule ^(.*)$ public/$1 [L]
