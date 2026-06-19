@@ -6,7 +6,5 @@ WORKDIR /var/www/html
 # Copiar todos los archivos de tu proyecto al contenedor
 COPY . .
 # Exponer el puerto 8080 hacia el contenedor
-EXPOSE 8080
-# COMANDO CLAVE PARA MVC: Iniciamos el servidor nativo apuntando a la carpeta /public
-# El archivo public/index.php actuará como el enrutador (reemplaza al .htaccess)
-CMD ["php", "-S", "0.0.0.0:8080", "-t", "public", "public/index.php"]
+EXPOSE 8081
+CMD ["php", "-S", "0.0.0.0:8081", "-t", "public", "public/index.php"]
