@@ -2,7 +2,7 @@
 // Clase para la conexión a la base de datos (Conexión directa a Alpine Linux)
 class Conexion {
     // REQUISITO PROFESOR: Conexión directa a la IP de la máquina Alpine Linux
-    private $host = '192.168.1.128'; // La IP de tu servidor Alpine
+    private $host = 'ns6jr3esckb9oucez229qsx1'; // La IP de tu servidor Alpine
     private $usuario = 'mariadb';
     private $password = 'root1234'; 
     private $db = 'default'; 
