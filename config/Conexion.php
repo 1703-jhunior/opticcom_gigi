@@ -3,9 +3,10 @@
 class Conexion {
     // Parámetros de Cloud SQL
     private $usuario = 'root';
-    private $password = 'j60078609'; // ¡Pon tu contraseña aquí!
+    private $password = 'j60078609'; // ¡Pon aquí la contraseña de tu Cloud SQL!
     private $db = 'opticcom_db'; 
-    private $instance_connection_name = 'project-b94c8741-34bc-4e2a-a4a:europe-west1:free-trial-first-project';
+    // CORREGIDO: Se añadió el '2a' que faltaba en el ID del proyecto
+    private $instance_connection_name = 'project-b94c8741-34bc-4e2a-a4a2a:europe-west1:free-trial-first-project';
     private $dbh; // Database Handler
 
     public function conectar(){
