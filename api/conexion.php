@@ -11,24 +11,31 @@ if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
     exit();
 }
 // =======================================================================
+
 class Conexion {
-    private $host = 'ns6jr3esckb9oucez229qsx1';
-    private $usuario = 'mariadb'; 
-    private $password = 'root1234'; 
-    private $db = 'default';
+    // Parámetros de Cloud SQL
+    private $usuario = 'root'; 
+    private $password = 'j60078609'; // ¡Pon tu contraseña aquí!
+    private $db = 'opticcom_db';
+    private $instance_connection_name = 'project-b94c8741-34bc-4e2a-a4a:europe-west1:free-trial-first-project';
     private $dbh;
+
     public function conectar(){
-        $dsn = 'mysql:host=' . $this->host . ';port=3306;dbname=' . $this->db . ';charset=utf8mb4';
+        // Conexión directa mediante el socket UNIX de Google Cloud
+        $dsn = 'mysql:unix_socket=/cloudsql/' . $this->instance_connection_name . ';dbname=' . $this->db . ';charset=utf8mb4';
+        
         $opciones = [
             PDO::ATTR_PERSISTENT => false,
             PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
             PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
         ];
+
         try {
             $this->dbh = new PDO($dsn, $this->usuario, $this->password, $opciones);
             return $this->dbh;
         } catch (PDOException $e) {
-            die(json_encode(["success" => false, "mensaje" => "Error BD: " . $e->getMessage()]));
+            // Devuelve el error en formato JSON para no romper el frontend
+            die(json_encode(["success" => false, "mensaje" => "Error BD en Cloud SQL: " . $e->getMessage()]));
         }
     }
 }
