@@ -1,16 +1,17 @@
 <?php
-// Clase para la conexión a la base de datos (Conexión directa a Alpine Linux)
+// Clase para la conexión a la base de datos (Adaptada para Google Cloud SQL)
 class Conexion {
-    // REQUISITO PROFESOR: Conexión directa a la IP de la máquina Alpine Linux
-    private $host = 'ns6jr3esckb9oucez229qsx1'; // La IP de tu servidor Alpine
-    private $usuario = 'mariadb';
-    private $password = 'root1234'; 
-    private $db = 'default'; 
+    // Parámetros de Cloud SQL
+    private $usuario = 'root';
+    private $password = 'j60078609'; // ¡Pon tu contraseña aquí!
+    private $db = 'opticcom_db'; 
+    private $instance_connection_name = 'project-b94c8741-34bc-4e2a-a4a:europe-west1:free-trial-first-project';
     private $dbh; // Database Handler
 
     public function conectar(){
-        // Al usar la IP real en el host, la conexión va "directo a Alpine" por el puerto público 3306
-        $dsn = 'mysql:host=' . $this->host . ';port=3306;dbname=' . $this->db . ';charset=utf8mb4';
+        // Conexión directa mediante el socket UNIX de Google Cloud
+        $dsn = 'mysql:unix_socket=/cloudsql/' . $this->instance_connection_name . ';dbname=' . $this->db . ';charset=utf8mb4';
+        
         $opciones = [
             PDO::ATTR_PERSISTENT => true,
             PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
@@ -20,7 +21,8 @@ class Conexion {
             $this->dbh = new PDO($dsn, $this->usuario, $this->password, $opciones);
             return $this->dbh;
         } catch (PDOException $e) {
-            die('Error Crítico de Conexión: No se pudo conectar a la base de datos. Verifica la contraseña en el archivo Conexion.php. Detalle: ' . $e->getMessage());
+            die('Error Crítico de Conexión: No se pudo conectar a la base de datos en Cloud SQL. Verifica la contraseña. Detalle: ' . $e->getMessage());
         }
     }
 }
+?>
