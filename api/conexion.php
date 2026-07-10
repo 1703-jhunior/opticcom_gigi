@@ -13,12 +13,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
 // =======================================================================
 
 class Conexion {
-    // Parámetros de Cloud SQL
-    private $usuario = 'root'; 
-    private $password = 'j60078609'; // ¡Pon aquí la contraseña de tu Cloud SQL!
-    private $db = 'opticcom_db';
-    // CORREGIDO: Se añadió el '2a' que faltaba en el ID del proyecto
-    private $instance_connection_name = 'project-b94c8741-34bc-4e2a-a4a2a:europe-west1:free-trial-first-project';
+    // Parámetros de Cloud SQL corregidos según tu panel
+    private $usuario = 'Jhunior'; 
+    private $password = 'Jh60078609#'; 
+    private $db = 'mi_proyecto_db';
+    private $instance_connection_name = 'project-b94c8741-34bc-4e2a-a4a:us-central1:free-trial-first-project';
     private $dbh;
 
     public function conectar(){
